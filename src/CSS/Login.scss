@@ -1,0 +1,16 @@
+ .Container {
+  position: absolute;
+  margin: 5% 30%;
+  width: auto;
+  background-color: brown;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  text-align: center;
+  .Login {
+    height: 250px;
+  }
+ .Register {
+  height: 450px;
+  }
+}

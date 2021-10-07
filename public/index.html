@@ -24,13 +24,16 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Wishlist App</title>
   </head>
+  <header id="Head_Menu">
+            
+  </header>
   <body>
+  <div id= "root">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
+    AH?
+     <!-- This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
       You can add webfonts, meta tags, or analytics to this file.
@@ -39,5 +42,27 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  </div>
+    <div id="Footer_Menu">
+
+  </div>
   </body>
 </html>
+<script>
+  import React from "react";
+  import axios from "axios";
+
+  document.getElementById("Submit_Login").onclick = function ()
+  {
+    axios.get("http://localhost:8080/api/v1/Users").then((response) =>
+    {
+      test(response.data)
+    })
+  }
+  function test(data)
+  {
+    console.log(data);
+  }
+
+
+</script>

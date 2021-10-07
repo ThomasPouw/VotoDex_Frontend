@@ -1,15 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {FooterMenu, HeaderMenu} from './Header_Footer';
+
 import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HeaderMenu/>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("Head_Menu"),
+   reportWebVitals(console.log)
 );
+ReactDOM.render(
+  <React.StrictMode>
+    <FooterMenu/>
+  </React.StrictMode>,
+  document.getElementById("Footer_Menu"),
+   reportWebVitals(console.log)
+
+);
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
