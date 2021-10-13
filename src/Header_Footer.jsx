@@ -6,50 +6,32 @@ import {Search_Menu} from './Pages/Search_Menu';
 import {Admin_Page} from './Pages/Admin_Page';
 import {Login, Register} from './Pages/Login';
 import './CSS/MainCSS.css';
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 
 export function HeaderMenu()
 {
     return(
-        <Router>
             <div className="Head_Menu">
-                <nav>
-                        <div className='nav_Menu'><Link to="/">Home</Link></div>
-                        <div className='nav_Menu'><Link to="/Search">Search</Link></div>
-                        <div className='nav_Menu'><Link to="/Product_E">Temporary Product Editor</Link></div>
-                    <div className='nav_Menu'><Link to="/Admin">Admin</Link></div>
-                    <div className='nav_Menu'><Link to="/Login">Login</Link></div>
-                    <div className='nav_Menu'><Link to="/Register">Register</Link></div>
-                </nav>
-                {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+                <BrowserRouter>
+                        <div>
+                            <div className='nav_Menu'><Link to="/">Home</Link></div>
+                            <div className='nav_Menu'><Link to="/Search">Search</Link></div>
+                            <div className='nav_Menu'><Link to="/Product_E">Temporary Product Editor</Link></div>
+                            <div className='nav_Menu'><Link to="/Admin">Admin</Link></div>
+                            <div className='nav_Menu'><Link to="/Login">Login</Link></div>
+                            <div className='nav_Menu'><Link to="/Register">Register</Link></div>
+                        </div>
+                    <Switch>
+                        <Route exact path="/" component={Wishlist3} exact/>
+                        <Route path="/Search" component={Search_Menu}/>
+                        <Route path="/Product_E" component={Product_Editor}/>
+                        <Route path="/Admin" component={Admin_Page}/>
+                        <Route path="/Login" component={Login}/>
+                        <Route path="/Register" component={Register}/>
+                    </Switch>
+                </BrowserRouter>
             </div>
-            <Switch>
-                <Route path="/Search">
-                    <Search_Menu/>
-                </Route>
-                <Route path="/Product_E">
-                    <Product_Editor/>
-                </Route>
-                <Route path="/Admin">
-                    <Admin_Page />
-                </Route>
-                <Route path="/Login">
-                    <Login />
-                </Route>
-                <Route path="/Register">
-                    <Register/>
-                </Route>
-                <Route path="/">
-                    <Wishlist3 />
-                </Route>
-                <Route path="">
-                    <Wishlist3 />
-                </Route>
-                
-            </Switch>
-        </Router>
     );
 }
 export function FooterMenu() {

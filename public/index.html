@@ -48,21 +48,4 @@
   </div>
   </body>
 </html>
-<script>
-  import React from "react";
-  import axios from "axios";
 
-  document.getElementById("Submit_Login").onclick = function ()
-  {
-    axios.get("http://localhost:8080/api/v1/Users").then((response) =>
-    {
-      test(response.data)
-    })
-  }
-  function test(data)
-  {
-    console.log(data);
-  }
-
-
-</script>

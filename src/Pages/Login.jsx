@@ -5,7 +5,7 @@ import '../CSS/Login.scss';
 import reportWebVitals from '../reportWebVitals';
 import 'react-tabs/style/react-tabs.css';
 import axios from "axios";
-import {Checkregister} from "../Event/Register.js";
+import {Checkregister_User} from "../Event/Register.js";
 
 export function Login() {
     return (
@@ -41,7 +41,7 @@ export function Register() {
                         <input type="date" id="Register_DateBirth"/><br />
                         <p>Email:</p>
                         <input type="text" id="Register_Email" /><br />
-                        <input type="submit" id="Submit_Register" onClick={Checkregister}/>
+                        <input type="submit" id="Submit_Register" onClick={Checkregister_User}/>
                     </div>
                 </div>
             </React.StrictMode>,
