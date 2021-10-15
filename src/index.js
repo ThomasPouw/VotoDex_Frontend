@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {FooterMenu, HeaderMenu} from './Component/Header_Footer';
 import './index.css';
-import {FooterMenu, HeaderMenu} from './Header_Footer';
-
 import reportWebVitals from './reportWebVitals';
-
-
 ReactDOM.render(
   <React.StrictMode>
     <HeaderMenu/>

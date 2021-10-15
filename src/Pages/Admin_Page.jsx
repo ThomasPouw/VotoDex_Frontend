@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import '../CSS/MainCSS.css';
-import '../CSS/Admin.css';
+import '../CSS/Main_Style.scss';
+import '../CSS/Admin.scss';
 import reportWebVitals from '../reportWebVitals';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Friendlist from "../Component/UserPage.js"
+
 
 export function Admin_Page() {
     return (
@@ -14,7 +14,6 @@ export function Admin_Page() {
                 <div className="Main_Container" key="Main" id="menu">
                     <div className="menu2" key="Main2" style={{ margin: 2 + "%", width: 95 + "%", height: 27 + "%" }}>
                         Datagrid. (Find one)
-                        <Friendlist/>
                     </div>
                     <div className="menu2" key="Main2" style={{ margin: 2 + "%", width: 95 + "%", height: 27 + "%" }}>
                         <Tabs>

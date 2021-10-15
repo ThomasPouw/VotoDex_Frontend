@@ -1,0 +1,46 @@
+.Main_User{
+  width: 95%;
+  height: 35%;
+  float: left;
+  text-align: center;
+  margin-left: 2%;
+   margin-right: 2%;
+}
+.Messages{
+  background-color: brown;}
+.WishList{
+  background-color: chartreuse;}
+.Friendlist{
+  background-color: aqua;}
+
+.Sub_User{
+  width: 95%;
+  height: 80%;
+  float: left;
+  text-align: center;
+  background-color: black;
+
+    margin: 2%;
+}
+
+.User{
+  width: 95%;
+  float: left;
+  text-align: center;
+  margin{
+    left: 2%;
+    right: 2%;
+  }
+  &.Main_{
+    Height: 35%;
+  }
+  &.Sub_{
+    Height: 90%;
+  }
+  &_Messages{
+    background-color: brown;}
+  &_WishList{
+    background-color: chartreuse;}
+  &_Friendlist{
+    background-color: aqua;}
+}

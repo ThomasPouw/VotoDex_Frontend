@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import '../CSS/MainCSS.css';
+import '../CSS/Main_Style.scss';
 import '../CSS/Login.scss';
 import reportWebVitals from '../reportWebVitals';
 import 'react-tabs/style/react-tabs.css';

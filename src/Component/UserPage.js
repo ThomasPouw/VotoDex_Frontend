@@ -5,7 +5,7 @@ export default class FriendList extends React.Component{
         Friends: "",
     }
     componentDidMount() {
-        axios.get('http://localhost:8080/api/v1/User/').then(result =>
+        axios.get('http://localhost:8080/api/v1/User/Friends').then(result =>
         {
             console.log(result);
             this.setState({Friends: result.data});
@@ -13,8 +13,7 @@ export default class FriendList extends React.Component{
     }
     render()
     {
-        return (
-            <h1> {this.state.Friends}</h1>
-        )
+        return null;
     };
 }
+

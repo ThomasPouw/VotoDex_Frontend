@@ -15,7 +15,7 @@ export function Checkregister_User()
                             try
                             {
                                 alert("User ID: "+ result.data[0]+ " User name: "+ result.data[1]+ " Role: " +result.data[2]);
-                                window.location.href = window.location.origin+"/Search";
+                                window.location.href = window.location.origin+"/"+result.data[2];
                             }
                             catch(error) {
                                 alert(error);

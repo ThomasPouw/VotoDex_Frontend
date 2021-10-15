@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import ReactDOM from 'react-dom';
-import '../CSS/Search.css';
-import '../CSS/MainCSS.css';
+import '../CSS/Search.scss';
+import '../CSS/Main_Style.scss';
 import reportWebVitals from '../reportWebVitals';
 import logo from '../logo.svg';
 import {MultiSelect} from "react-multi-select-component";

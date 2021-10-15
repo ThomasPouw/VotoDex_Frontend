@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import '../CSS/MainCSS.css';
+import '../CSS/Main_Style.scss';
 import reportWebVitals from '../reportWebVitals';
 
 export function Product_Editor() {
