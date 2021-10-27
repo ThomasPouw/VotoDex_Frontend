@@ -1,5 +1,16 @@
 .Tab_Menu{
-  width:33.333333%;
+  width:100%;
   height:100%;
-  float: left;
+  display: flex;
+  justify-items: flex-end;
+  background-color: #0F3755;
 }
+.Tab_Sub{
+  width:20%;
+  height:95%;
+  margin:2.5%;
+  background-color: #0F3755;
+  border-radius: 10%;
+}
+
+//0E1A43,0F3755,115467,127178,138E8A
