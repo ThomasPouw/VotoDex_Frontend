@@ -1,7 +1,22 @@
 .Search_Bar {
   width: 15%;
-  height: 90%;
+  height: 100%;
   background-color: green;
   float: left;
   text-align: center;
+  padding: 2.5%;
+}
+.Search_Menu{
+  position: absolute;
+  width: 90%;
+  height:80%;
+  background-color: chartreuse;
+  margin: 5%;
+  border-radius: 5%;
+  overflow: hidden;
+}
+.Search_Results{
+  height:100%;
+  width: auto;
+  background-color: brown;
 }

@@ -1,0 +1,31 @@
+.Editor_Menu{
+  margin: 10%;
+  width: 80%;
+  position: absolute;
+  height: fit-content;
+  background-color: #0F3755;
+  padding: 2%;
+  border-radius: 2%;
+}
+.Editor_Sub_Menu{
+  height: 100%;
+  width: 40%;
+  padding:1%;
+  float: left;
+  background-color: chartreuse;
+  text-align: center;
+}
+.Editor_BTN{
+  float: right;
+  height: 5%;
+  width: fit-content;
+  background-color: aqua;
+  border-radius: 5%;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 50%;
+}

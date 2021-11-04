@@ -64,7 +64,7 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_Category">
                         <div className="Tab_Sub" id="DropDown_Catagory_menu">
                             <h1>Main Category</h1>
-                            <select name="DropDown_Main_Category" id="DropDown_Main_Category" onLoad={this.LoadCategory}/>
+                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Main_Category"}/>
                         </div>
                         <div className="Tab_Sub" id="Add_Catagory_menu">
                             <h1>Add Catagory</h1>
@@ -86,9 +86,13 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_SubCategory">
                         <div className="Tab_Sub" id="DropDown_SubCatagory_menu">
                             <h1>Main Category</h1>
-                            <select name="DropDown_Sub_MainCategory" id="DropDown_Sub_MainCategory" onLoad={this.LoadCategory}/>
+                            <div id={"DropDown_SubMain"}>
+                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} Multi={false} Secondary={{ID_Name: "DropDown_Sub_Category", path: "/Category/Get/", located: "DropDown_Sub", Multi: false}}/>
+                            </div>
                             <h1>Sub Category</h1>
-                            <select name="DropDown_Sub_Category" id="DropDown_Sub_Category"/>
+                        <div className={"DropDown_Sub"}>
+                            <DropDown  Id_Name={"DropDown_Sub_Category"} Multi={false} />
+                        </div>
                         </div>
                         <div className="Tab_Sub" id="Add_Sub_Catagory_menu">
                             <h1>Add sub Catagory</h1>
@@ -110,7 +114,7 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_Region">
                         <div className="Tab_Sub" id="DropDown_Region_menu">
                             <h1>Region</h1>
-                            <select name="DropDown_Region" id="DropDown_Region" onLoad={this.LoadRegion}/>
+                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region"} Multi={false} />
                         </div>
                         <div className="Tab_Sub" id="Add_Region_menu">
                             <h1>Add region Catagory</h1>
@@ -132,9 +136,11 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_AgeRating">
                         <div className="Tab_Sub" id="DropDown_AgeRating_menu">
                             <h1>Region</h1>
-                            <select name="DropDown_Region_AgeRating" id="DropDown_Region_AgeRating" onLoad={this.LoadRegion}/>
+                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region_AgeRating"} Multi={false} Secondary={{ID_Name: "DropDown_AgeRating", path: "/Region_AgeRating/Get/\"", located: "DropDown_AgeRating", Multi: false}}/>
                             <h1>AgeRating</h1>
-                            <select name="DropDown_AgeRating" id="DropDown_AgeRating"/>
+                            <div className={"DropDown_Age"}>
+                                <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_AgeRating"} Multi={false} />
+                            </div>
                         </div>
                     <div className="Tab_Sub" id="Add_Age_Rating_menu">
                         <h1>Add Age Rating Catagory</h1>

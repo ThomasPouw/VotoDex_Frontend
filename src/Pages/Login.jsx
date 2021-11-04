@@ -6,6 +6,7 @@ import reportWebVitals from '../reportWebVitals';
 import 'react-tabs/style/react-tabs.css';
 import axios from "axios";
 import {Checkregister_User} from "../Event/Register.js";
+import {LoginAttempt} from "../Event/Login";
 
 export function Login() {
     return (
@@ -17,7 +18,7 @@ export function Login() {
                         <input type="text" id="Login_UserName"/><br/>
                         <p>Password:</p>
                         <input type="text" id="Login_Password" /><br />
-                        <input type="submit" id="Submit_Login" />
+                        <input type="submit" id="Submit_Login" onClick={LoginAttempt}/>
                     </div>
                 </div>
             </React.StrictMode>,
