@@ -2,9 +2,7 @@ import react from 'react';
 import render from 'react-dom';
 import axios from 'axios';
 export default class Search_Result extends React.Component{
-    state = {
-        result = [[]]
-    }
+
 
     render(){
         return(
@@ -17,7 +15,7 @@ export default class Search_Result extends React.Component{
         axios.get("http://localhost:8080/api/v1/Options/Products/").then(result =>{
             const CleanResults = [];
             if(result.data[0] != null){
-                RawResults = results.data
+                this.RawResults = results.data
                 this.state.result = RawResults;
                 for (let i = 1; i <= RawResults.length; index++) {
                     CleanResults.push(
@@ -36,7 +34,7 @@ export default class Search_Result extends React.Component{
             }
             else
             {
-                alert(Something went wrong!<br/> You somehow see);
+                alert("Something went wrong!<br/> You somehow see");
             }
         });
     }

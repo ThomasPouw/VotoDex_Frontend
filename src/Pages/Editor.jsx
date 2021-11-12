@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import '../CSS/Main_Style.scss';
 import reportWebVitals from '../reportWebVitals';
-import DropDown from '../Component/DropDowns'
 import '../CSS/Editor.scss'
+import {DropDown, MultiDropDown} from "../Component/BasicComponents/DropDown";
+import {StandardTextFields} from "../Component/BasicComponents/TextFields"
+import {Editor_Send} from "../Event/Editor_Logic";
 
 export function Product_Editor() {
     return (
@@ -12,18 +14,16 @@ export function Product_Editor() {
                 <div className="Main_Container" key="Main">
                     <div className='Editor_Menu' >
                         <div className="Editor_Sub_Menu">
-                            <p> Name Product: </p>
-                            <input type="text" id="Product_Name" name="Product_Name_TXT_Editor"/>
-                            <p> Company: (change this)</p>
-                            <input type="text" id="Company_Name" name="Company_Name_TXT_Editor"/>
+                            <StandardTextFields Id_Name={"Product_Name_TXT_Editor"} Label={"Product Name"}/>
+                            <StandardTextFields Id_Name={"Company_Name_TXT_Editor"} Label={"Company"}/>
                             <p> Categorie: (change this)</p>
-                            <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Editor_Category"} Multi={true} Secondary={{ID_Name: "DropDown_Editor_SubCategory", path: "/Category/Get/", located: "SubCategory_Editor", Multi: false}}/>
+                            <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Editor_Category"} Inline = "Editor_Category" Secondary={{Id_Name: "DropDown_Editor_SubCategory", path:"/Category/Get/", Route: "SubCategory_Editor", Type:"Normal",Inline: "Editor_SubCategory"}}/>
                             <p> SubCategorie: (change this)</p>
                             <div id={"SubCategory_Editor"}>
                                 <DropDown Id_Name={"DropDown_Editor_SubCategory"}/>
                             </div>
                             <p> Region: (change this)</p>
-                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Editor_Region"} Multi={false} Secondary={{ID_Name: "DropDown_Editor_AgeRating", path: "/Region_AgeRating/Get/", located: "AgeRating_Editor", Multi: false}}/>
+                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Editor_Region"} Secondary={{Id_Name: "DropDown_Editor_SubCategory", path:"/Region_AgeRating/Get/", Route: "AgeRating_Editor", Type:"Normal" ,Inline: "Editor_AgeRating"}}/>
                             <p> Age Rating: (change this)</p>
                             <div id={"AgeRating_Editor"}>
                                 <DropDown Id_Name={"DropDown_Editor_AgeRating"}/>
@@ -34,12 +34,12 @@ export function Product_Editor() {
                         </div>
                         <div className="Editor_Sub_Menu" style={{float: "right"}}>
                             <p>Description:</p>
-                            <textarea id="w3review" name="w3review" rows="10" cols="50" >
+                            <textarea id="Description_LongText" name="Description_LongText" rows="10" cols="50" >
                             </textarea>
                             <p>Image:</p>
-                            <img width="50%" height="100%" id="Edit_Preview_Picture" src={LoadPicture()} />
+                            <img width="50%" height="100%" id="Preview_Picture" src={LoadPicture()} />
                             <input type="file" name="fileToUpload" id="Edit_fileToUpload" value="" onChange={(e) => GetPicture(e)}></input>
-                            <button type={"button"} value={"Item"} className={"Editor_BTN"} onClick={Test}>Item</button>
+                            <button type={"button"} value={"Item"} className={"Editor_BTN"} onClick={Editor_Send}>Item</button>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,8 @@ function GetPicture(event) {
         reader.onload = () => {
             if(reader.result != null || undefined || "")
             {
-                const Container = document.getElementById("Edit_Preview_Picture");
+                console.log(reader.result);
+                const Container = document.getElementById("Preview_Picture");
                 Container.setAttribute("src", reader.result);
                 localStorage.setItem('Editor_Picture', reader.result);
             } 

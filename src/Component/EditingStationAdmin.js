@@ -3,7 +3,8 @@ import '../CSS/Main_Style.scss';
 import '../CSS/Admin.scss';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import DropDown from '../Component/DropDowns';
+import {DropDown, GroupingDropDown} from './BasicComponents/DropDown';
+
 import '../CSS/Admin.scss';
 import {Add_Option, Edit_Option, Delete_Option} from '../Event/Admin_Dropdown';
 
@@ -18,7 +19,7 @@ export default class EditingStationAdmin extends React.Component{
         Delete_Option("DropDown_Main_Category", null, "/Category/Main/Delete/");
     }
     AddSubCategory = () => {
-        Add_Option("Add_Sub_Catagory_TXT","DropDown_Sub_MainCategory","/Category/Sub/Add/","DropDown_Sub_Category");
+        Add_Option("Add_Sub_Catagory_TXT","DropDown_Sub_Main_Category","/Category/Sub/Add/","DropDown_Sub_Category");
     }
     EditSubCategory = () => {
         Edit_Option("Edit_Sub_Category_TXT", "DropDown_Sub_Category", "DropDown_Sub_MainCategory", "/Category/Edit/");
@@ -44,12 +45,6 @@ export default class EditingStationAdmin extends React.Component{
     DeleteAge = () => {
         Delete_Option("DropDown_AgeRating","DropDown_Region_AgeRating", "/Region_AgeRating/Delete/");
     }
-    LoadCategory = () => {
-        DropDown("/Category/Get/");
-    }
-    LoadRegion = () => {
-        DropDown("/Region_AgeRating/Get/");
-    }
     
     render() {
         return <div className="menu2" style={{ margin: 2 + "%", width: 95 + "%", height: 27 + "%" }}>
@@ -64,7 +59,7 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_Category">
                         <div className="Tab_Sub" id="DropDown_Catagory_menu">
                             <h1>Main Category</h1>
-                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Main_Category"}/>
+                                <DropDown path={"/Category/Get/"} ID_Name={"DropDown_Main_Category"} label={"Category"}/>
                         </div>
                         <div className="Tab_Sub" id="Add_Catagory_menu">
                             <h1>Add Catagory</h1>
@@ -87,11 +82,11 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="DropDown_SubCatagory_menu">
                             <h1>Main Category</h1>
                             <div id={"DropDown_SubMain"}>
-                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} Multi={false} Secondary={{ID_Name: "DropDown_Sub_Category", path: "/Category/Get/", located: "DropDown_Sub", Multi: false}}/>
+                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} Secondary={{Id_Name: "DropDown_Sub_Category", path:"/Category/Get/", Route: "DropDown_Sub", Type:"Normal"}}/>
                             </div>
                             <h1>Sub Category</h1>
-                        <div className={"DropDown_Sub"}>
-                            <DropDown  Id_Name={"DropDown_Sub_Category"} Multi={false} />
+                        <div id={"DropDown_Sub"}>
+                            <DropDown  Id_Name={"DropDown_Sub_Category"}/>
                         </div>
                         </div>
                         <div className="Tab_Sub" id="Add_Sub_Catagory_menu">
@@ -114,6 +109,7 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_Region">
                         <div className="Tab_Sub" id="DropDown_Region_menu">
                             <h1>Region</h1>
+
                             <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region"} Multi={false} />
                         </div>
                         <div className="Tab_Sub" id="Add_Region_menu">
@@ -160,7 +156,13 @@ export default class EditingStationAdmin extends React.Component{
                     </div>
                 </TabPanel>
             </Tabs>
+            <script>
+
+            </script>
         </div>
     }
+}
+function DropDownWatcher(){
+    document.getElementById()
 }
 
