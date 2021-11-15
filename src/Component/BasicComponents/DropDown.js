@@ -66,9 +66,6 @@ export class DropDown extends React.Component{
         if(this.props.Secondary != undefined){
             this.state.Secondary = this.props.Secondary;
         }
-        if(this.props.Inline != undefined || this.props.Inline != ""){
-            this.state.Inline = this.props.Inline;
-        }
     }
     render(){
         console.log(this.props.Id_Name);
@@ -76,7 +73,10 @@ export class DropDown extends React.Component{
             <div>
                 <FormControl sx={{ m: 1, minWidth: 80 }}>
                     <InputLabel id="demo-simple-select-autowidth-label">{this.props.label}</InputLabel>
+
                     <Select
+                        ref={this.DropdownInput}
+                        inputRef={this.DropdownSelect}
                         id={this.props.Id_Name}
                         onChange={(E) => this.Changes(E)}
                         autoWidth
@@ -147,21 +147,14 @@ const MenuProps = {
 function Change(event){
     this.setState({value: event.target.value});
     if(this.state.Secondary.Type !== ""){
-        let Inline = "";
-        if(this.state.Secondary.Inline !== ""){
-            Inline = this.state.Secondary.Inline;
-        }
             if(this.state.Secondary.Type =="Normal"){
                 console.log(<DropDown path={this.state.Secondary.path} Id_Name={this.state.Secondary.Id_Name}/>);
-                render(<DropDown path={this.state.Secondary.path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} MenuType={this.state.Secondary.MenuType} Inline={Inline}/>, document.getElementById(this.state.Secondary.Route));
+                render(<DropDown path={this.state.Secondary.path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} MenuType={this.state.Secondary.MenuType} ref={this.props.Secondary.refs}/>, document.getElementById(this.state.Secondary.Route));
             }
             else if(this.state.Secondary.Type ==="Multi"){
-                render(<MultiDropDown path={this.state.Secondary.Path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} Inline={Inline}/>, document.getElementById(this.state.Secondary.Route));
+                render(<MultiDropDown path={this.state.Secondary.Path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} ref={this.props.Secondary.refs}/>, document.getElementById(this.state.Secondary.Route));
             }
 
-    }
-    if(this.state.Inline != ""){
-        localStorage.setItem(this.state.Inline, event.target.value);
     }
 
 }

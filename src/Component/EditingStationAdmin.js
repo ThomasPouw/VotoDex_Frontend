@@ -4,6 +4,7 @@ import '../CSS/Admin.scss';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {DropDown, GroupingDropDown} from './BasicComponents/DropDown';
+import {Button} from "@mui/material";
 
 import '../CSS/Admin.scss';
 import {Add_Option, Edit_Option, Delete_Option} from '../Event/Admin_Dropdown';
@@ -64,16 +65,16 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="Add_Catagory_menu">
                             <h1>Add Catagory</h1>
                             <input type="text" id="Add_Catagory_TXT" />
-                            <button type ="button" id="Add_Catagory_BTN" onClick={this.AddCategory} value={"Add Category"}>Add Category</button>
+                            <Button type ="button" variant="contained" id="Add_Catagory_BTN" onClick={this.AddCategory} value={"Add Category"}>Add Category</Button>
                         </div>
                         <div className="Tab_Sub" id="Edit_Catagory_menu">
                             <h1>Edit Catagory</h1>
                             <input type="text" id="Edit_Catagory_TXT" />
-                            <button type ="button" id="Edit_Catagory_BTN" onClick={this.EditCategory} value={"Edit Category"}>Edit Category</button>
+                            <Button type ="button" variant="contained" id="Edit_Catagory_BTN" onClick={this.EditCategory} value={"Edit Category"}>Edit Category</Button>
                         </div>
                         <div className="Tab_Sub" id="Delete_Catagory_menu">
                             <h1>Delete Catagory</h1>
-                            <button type ="button" id="Delete_Catagory_BTN" onClick={this.DeleteCategory} value={"Delete Category"}>Delete Category</button>
+                            <Button type ="button" variant="contained" id="Delete_Catagory_BTN" onClick={this.DeleteCategory} value={"Delete Category"}>Delete Category</Button>
                         </div>
                     </div>
                 </TabPanel>
@@ -92,16 +93,16 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="Add_Sub_Catagory_menu">
                             <h1>Add sub Catagory</h1>
                             <input type="text" id="Add_Sub_Catagory_TXT"/><br />
-                            <button type ="button" id="Add_Sub_Catagory_BTN" onClick={this.AddSubCategory} value={"Add Sub Category"}>Add Sub Category</button>
+                            <Button type ="button" variant="contained" id="Add_Sub_Catagory_BTN" onClick={this.AddSubCategory} value={"Add Sub Category"}>Add Sub Category</Button>
                         </div>
                         <div className="Tab_Sub" id="Edit_Sub_Catagory_menu">
                             <h1>Edit sub Catagory</h1>
                             <input type="text" id="Edit_Sub_Catagory_TXT" /><br />
-                            <button type ="button" id="Edit_Sub_Catagory_BTN" onClick={this.EditSubCategory} value={"Edit Sub Category"}>Edit Sub Category</button>
+                            <Button type ="button" variant="contained" id="Edit_Sub_Catagory_BTN" onClick={this.EditSubCategory} value={"Edit Sub Category"}>Edit Sub Category</Button>
                         </div>
                         <div className="Tab_Sub" id="Delete_Sub_Catagory_menu">
                             <h1>Delete sub Catagory</h1>
-                            <button type ="button" id="Delete_Sub_Catagory_BTN" onClick={this.DeleteSubCategory} value={"Delete Sub Category"}>Delete Sub Category</button>
+                            <Button type ="button" variant="contained" id="Delete_Sub_Catagory_BTN" onClick={this.DeleteSubCategory} value={"Delete Sub Category"}>Delete Sub Category</Button>
                         </div>
                     </div>
                 </TabPanel>
@@ -115,16 +116,16 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="Add_Region_menu">
                             <h1>Add region Catagory</h1>
                             <input type="text" id="Add_Region_TXT" /><br />
-                            <button type ="button" id="Add_Region_BTN" onClick={this.AddRegion} value={"Add Region"}>Add Region</button>
+                            <Button type ="button" variant="contained" id="Add_Region_BTN" onClick={this.AddRegion} value={"Add Region"}>Add Region</Button>
                         </div>
                         <div className="Tab_Sub" id="Edit_Region_menu">
                             <h1>Edit region Catagory</h1>
                             <input type="text" id="Edit_Region_TXT" /><br />
-                            <button type ="button" id="Edit_Region_BTN" onClick={this.EditRegion} value={"Edit Region"}>Edit Region</button>
+                            <Button type ="button" variant="contained" id="Edit_Region_BTN" onClick={this.EditRegion} value={"Edit Region"}>Edit Region</Button>
                         </div>
                         <div className="Tab_Sub" id="Delete_Region_menu">
                             <h1>Delete region Catagory</h1>
-                            <button type ="button" id="Delete_Region_BTN" onClick={this.DeleteRegion} value={"Delete Region"}>Delete Region</button>
+                            <Button type ="button" variant="contained" id="Delete_Region_BTN" onClick={this.DeleteRegion} value={"Delete Region"}>Delete Region</Button>
                         </div>
                     </div>
                 </TabPanel>
@@ -141,17 +142,17 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Sub" id="Add_Age_Rating_menu">
                         <h1>Add Age Rating Catagory</h1>
                         <input type="text" id="Add_Age_Rating_TXT" /><br />
-                        <button type ="button" id="Add_Age_Rating_BTN" onClick={this.AddAge} value={"Add Age Rating"}>Add Age Rating</button>
+                        <Button type ="button" variant="contained" id="Add_Age_Rating_BTN" onClick={this.AddAge} value={"Add Age Rating"}>Add Age Rating</Button>
                     </div>
                     <div className="Tab_Sub" id="Edit_Age_Rating_menu">
                         <h1>Edit Age Rating Catagory</h1>
                         <input type="text" id="Edit_Age_TXT" /><br />
-                        <button type ="button" id="Edit_Age_Rating_BTN" onClick={this.EditAge} value={"Edit Age Rating"}>Edit Age Rating</button>
+                        <Button type ="button" variant="contained" id="Edit_Age_Rating_BTN" onClick={this.EditAge} value={"Edit Age Rating"}>Edit Age Rating</Button>
                     </div>
                     <div className="Tab_Sub" id="Delete_Age_Rating_menu">
                         <h1>Delete Age Rating Catagory</h1>
                         Doesnt put it another Age rating yet.
-                        <button type ="button" id="Delete_Age_Rating_BTN" onClick={this.DeleteAge} value={"Delete Age Rating"}>Delete Age Rating</button>
+                        <Button type ="button" variant="contained" id="Delete_Age_Rating_BTN" onClick={this.DeleteAge} value={"Delete Age Rating"}>Delete Age Rating</Button>
                     </div>
                     </div>
                 </TabPanel>

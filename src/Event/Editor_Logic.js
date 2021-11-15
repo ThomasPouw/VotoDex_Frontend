@@ -1,38 +1,54 @@
 import React from "react";
 import axios from "axios";
 
-export function Editor_Send(){
-    console.log(document.getElementById("Product_Name_TXT_Editor"));
+export function Editor_Send(DropDownReferences){
     let Product_Name = document.getElementById("Product_Name_TXT_Editor").value;
-    console.log("Product_Name "+ Product_Name);
-    console.log(document.getElementById("Company_Name_TXT_Editor"));
     let Company_Name = document.getElementById("Company_Name_TXT_Editor").value;
-    console.log("Company_Name "+ Company_Name);
-    console.log(document.getElementById("Description_LongText"));
     let Description_LongText = document.getElementById("Description_LongText").value;
     console.log("Description_LongText "+ Description_LongText);
     console.log(document.getElementById("Preview_Picture"));
     let Picture_Data = document.getElementById("Preview_Picture").getAttribute("src");
     console.log("Picture_Data"+ Picture_Data);
     console.log(document.getElementById("DropDown_Editor_Category"));
-    let Category_Value = localStorage.getItem("Editor_Category")
+    let Category_Value = DropDownReferences[0].current.state.value;
     console.log(Category_Value);
     console.log(document.getElementById("SubCategory_Editor"));
-    let SubCategory_Value_Array = localStorage.getItem("Editor_SubCategory");
+    let SubCategory_Value_Array = DropDownReferences[1].current.state.value;
     console.log("SubCategory_Value_Array "+ SubCategory_Value_Array);
-    console.log(document.getElementById("DropDown_Editor_AgeRating"));
-    let AgeRating_Value_Array = localStorage.getItem("Editor_AgeRating");
+    let AgeRating_Value_Array = DropDownReferences[2].current.state.value;
     console.log("AgeRating_Value_Array "+ AgeRating_Value_Array);
+    let Picture = DropDownReferences[3].current.files[0];
+    console.log(Picture);
+    let fd = new FormData();
+    fd.append('image', Picture, Picture.name);
+    console.log(fd);
+    console.log(fd.get('image'));
+    console.log(fd);
     if(EmptyCheck(Product_Name, Company_Name, Description_LongText, Picture_Data, Category_Value, SubCategory_Value_Array, AgeRating_Value_Array)){
         console.log("Huge Succes");
-        const imageData = new FormData();
-        imageData.append('Picture', Picture_Data);
-        console.log(imageData)
-        axios.post("http://localhost:8080/api/v1/Product/"+Product_Name+"/"+Company_Name+"/"+Description_LongText+"/"+imageData+"/"+Category_Value+"/"+SubCategory_Value_Array+"/"+AgeRating_Value_Array).then(
-            result => {
-                alert(result.data);
+
+        axios.post("http://localhost:8080/api/v1/Product/"+Product_Name+"/"+Company_Name+"/"+Description_LongText+"/"+Picture+"/"+Category_Value+"/"+SubCategory_Value_Array+"/"+AgeRating_Value_Array, {baseURL: "http//localhost:8080"}).then(
+                result => {
+                    alert(result.data);}
+        ).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
             }
-        )
+            console.log(error.config);
+        });
     }
 }
 function EmptyCheck(Product, Company, Description, Picture, Category, SubCategory, AgeRating){
@@ -66,4 +82,7 @@ function EmptyCheck(Product, Company, Description, Picture, Category, SubCategor
         alert("Please enter one or more AgeRatings");
     }
     return NotEmpty
+}
+function GetImage(event){
+    return event.target.files[0]
 }
