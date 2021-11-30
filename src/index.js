@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {FooterMenu, HeaderMenu} from './Component/Header_Footer';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import "cors";
 ReactDOM.render(
   <React.StrictMode>
     <HeaderMenu/>

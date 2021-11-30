@@ -18,16 +18,22 @@ export function Editor_Send(DropDownReferences){
     let AgeRating_Value_Array = DropDownReferences[2].current.state.value;
     console.log("AgeRating_Value_Array "+ AgeRating_Value_Array);
     let Picture = DropDownReferences[3].current.files[0];
-    console.log(Picture);
-    let fd = new FormData();
-    fd.append('image', Picture, Picture.name);
-    console.log(fd);
-    console.log(fd.get('image'));
-    console.log(fd);
-    if(EmptyCheck(Product_Name, Company_Name, Description_LongText, Picture_Data, Category_Value, SubCategory_Value_Array, AgeRating_Value_Array)){
-        console.log("Huge Succes");
 
-        axios.post("http://localhost:8080/api/v1/Product/"+Product_Name+"/"+Company_Name+"/"+Description_LongText+"/"+Picture+"/"+Category_Value+"/"+SubCategory_Value_Array+"/"+AgeRating_Value_Array, {baseURL: "http//localhost:8080"}).then(
+
+    console.log(Picture);
+    if(EmptyCheck(Product_Name, Company_Name, Description_LongText, Picture, Category_Value, SubCategory_Value_Array, AgeRating_Value_Array)){
+        console.log("Huge Succes");
+        let fd = new FormData();
+        fd.append('Product_Name', Product_Name);
+        fd.append('Company_Name', Product_Name);
+        fd.append('Description', Description_LongText);
+        fd.append('Category', Category_Value);
+        fd.append('SubCategory', SubCategory_Value_Array);
+        fd.append('AgeRating', AgeRating_Value_Array);
+        fd.append('image', Picture, Picture.name);
+        console.log(fd)
+        axios.post("http://localhost:2001/api/v1/Product/Add", {
+            fd}).then(
                 result => {
                     alert(result.data);}
         ).catch(function (error) {
@@ -35,6 +41,7 @@ export function Editor_Send(DropDownReferences){
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
+                console.log(error.response);
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);

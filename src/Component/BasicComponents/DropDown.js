@@ -145,6 +145,7 @@ const MenuProps = {
     },
 };
 function Change(event){
+    console.log(event.target.value);
     this.setState({value: event.target.value});
     if(this.state.Secondary.Type !== ""){
             if(this.state.Secondary.Type =="Normal"){
@@ -162,13 +163,27 @@ function Option(path, MainID, MenuOrOption){
     const options = [];
     if(path !== undefined){
         if(MainID === undefined){
-            axios.get("http://localhost:8080/api/v1/Options"+path).then(function(result){
+            axios.get("http://localhost:8081/api/v1/Options"+path).then(function(result){
                     for(let i = 0; i < result.data.length; i++){
+                        console.log("Hello!");
+                        console.log(result.data);
+                        console.log(result.data[i].readID)
                         if(MenuOrOption ==="option"){
-                            options.push(<option value={result.data[i][0]}>{result.data[i][1]}</option>);
+                            if(result.data[i].categoryName != undefined){
+                                options.push(<option value={result.data[i].readID}>{result.data[i].categoryName}</option>);
+                            }
+                            else{
+                                options.push(<option value={result.data[i].readID}>{result.data[i].regionAgeName}</option>);
+                            }
+
                         }
                         else{
-                            options.push(<MenuItem value={result.data[i][0]}>{result.data[i][1]}</MenuItem>);
+                            if(result.data[i].categoryName != undefined){
+                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].categoryName}</MenuItem>);
+                            }
+                            else{
+                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].regionAgeName}</MenuItem>);
+                            }
                         }
                     }
                     this.setState({
@@ -182,10 +197,21 @@ function Option(path, MainID, MenuOrOption){
             axios.get("http://localhost:8080/api/v1/Options"+path+MainID).then(function(result) {
                     for(let i = 0; i < result.data.length; i++){
                         if(MenuOrOption ==="option"){
-                            options.push(<option value={result.data[i][0]}>{result.data[i][1]}</option>);
+                            if(result.data[i].categoryName != undefined){
+                                options.push(<option value={result.data[i].readID}>{result.data[i].categoryName}</option>);
+                            }
+                            else{
+                                options.push(<option value={result.data[i].readID}>{result.data[i].regionAgeName}</option>);
+                            }
+
                         }
                         else{
-                            options.push(<MenuItem value={result.data[i][0]}>{result.data[i][1]}</MenuItem>);
+                            if(result.data[i].categoryName != undefined){
+                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].categoryName}</MenuItem>);
+                            }
+                            else{
+                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].regionAgeName}</MenuItem>);
+                            }
                         }
                     }
                     this.setState({

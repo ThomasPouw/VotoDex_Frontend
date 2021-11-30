@@ -2,22 +2,23 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import axios from 'axios';
 import reportWebVitals from '../reportWebVitals';
-export function Add_Option(Text_All_Options,Text_Extra_Options, Route, Updated_Dropdown)
+export function Add_Option(Text_All_Options,href, Route, Updated_Dropdown)
 {
 
     console.log("Test");
     if(document.getElementById(Text_All_Options) != null)
     {
         let new_Item = document.getElementById(Text_All_Options).value;
-        if(Text_Extra_Options != null)
+        if(href != null)
         {
-            new_Item += "/" +document.getElementById(Text_Extra_Options).value+ "/";
+            console.log(href.current);
+            new_Item += "/"+ href.current.state.value;
             console.log(new_Item);
         }
         else{
             new_Item += "/";
         }
-        axios.get("http://localhost:8080/api/v1/Options"+Route+new_Item).then(result =>{
+        axios.get("http://localhost:8081/api/v1/Options"+Route+new_Item).then(result =>{
             if(result.data[0] != null){
                 alert(new_Item +" Succesfully added");
                 window.location.reload(true);

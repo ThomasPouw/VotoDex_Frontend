@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef, useRef} from 'react';
 import '../CSS/Main_Style.scss';
 import '../CSS/Admin.scss';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
@@ -8,8 +8,12 @@ import {Button} from "@mui/material";
 
 import '../CSS/Admin.scss';
 import {Add_Option, Edit_Option, Delete_Option} from '../Event/Admin_Dropdown';
-
+let Main_Sub = "";
 export default class EditingStationAdmin extends React.Component{
+    constructor(props) {
+        super(props);
+        Main_Sub = createRef();
+    }
     AddCategory = () => {
         Add_Option("Add_Catagory_TXT",null,"/Category/Main/Add/","DropDown_Main_Category");
     }
@@ -20,7 +24,7 @@ export default class EditingStationAdmin extends React.Component{
         Delete_Option("DropDown_Main_Category", null, "/Category/Main/Delete/");
     }
     AddSubCategory = () => {
-        Add_Option("Add_Sub_Catagory_TXT","DropDown_Sub_Main_Category","/Category/Sub/Add/","DropDown_Sub_Category");
+        Add_Option("Add_Sub_Catagory_TXT",Main_Sub,"/Category/Sub/Add/","DropDown_Sub_Category");
     }
     EditSubCategory = () => {
         Edit_Option("Edit_Sub_Category_TXT", "DropDown_Sub_Category", "DropDown_Sub_MainCategory", "/Category/Edit/");
@@ -83,7 +87,7 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="DropDown_SubCatagory_menu">
                             <h1>Main Category</h1>
                             <div id={"DropDown_SubMain"}>
-                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} Secondary={{Id_Name: "DropDown_Sub_Category", path:"/Category/Get/", Route: "DropDown_Sub", Type:"Normal"}}/>
+                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} ref={Main_Sub} Secondary={{Id_Name: "DropDown_Sub_Category", path:"/Category/Get/", Route: "DropDown_Sub", Type:"Normal"}}/>
                             </div>
                             <h1>Sub Category</h1>
                         <div id={"DropDown_Sub"}>
@@ -92,8 +96,8 @@ export default class EditingStationAdmin extends React.Component{
                         </div>
                         <div className="Tab_Sub" id="Add_Sub_Catagory_menu">
                             <h1>Add sub Catagory</h1>
-                            <input type="text" id="Add_Sub_Catagory_TXT"/><br />
-                            <Button type ="button" variant="contained" id="Add_Sub_Catagory_BTN" onClick={this.AddSubCategory} value={"Add Sub Category"}>Add Sub Category</Button>
+                            <input type="text" id="Add_Sub_Catagory_TXT" /><br />
+                            <Button type ="button" variant="contained" id="Add_Sub_Catagory_BTN"  onClick={this.AddSubCategory} value={"Add Sub Category"}>Add Sub Category</Button>
                         </div>
                         <div className="Tab_Sub" id="Edit_Sub_Catagory_menu">
                             <h1>Edit sub Catagory</h1>
