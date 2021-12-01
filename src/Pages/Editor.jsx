@@ -7,14 +7,16 @@ import {DropDown, MultiDropDown} from "../Component/BasicComponents/DropDown";
 import {StandardTextFields} from "../Component/BasicComponents/TextFields"
 import {Editor_Send} from "../Event/Editor_Logic";
 import {MUIButton} from "../Component/BasicComponents/MUIButton";
+import {CheckBox} from "../Component/BasicComponents/CheckBox";
 
 let Picture = null;
 export function Product_Editor(){
     let Category = React.createRef();
     let SubCategory = React.createRef();
+    let Region = React.createRef();
     let AgeRating = React.createRef();
     let Picture = React.createRef();
-
+    let AdultRated = React.createRef();
     return (
         ReactDOM.render(
             <React.StrictMode>
@@ -24,18 +26,14 @@ export function Product_Editor(){
                             <StandardTextFields Id_Name={"Product_Name_TXT_Editor"} Label={"Product Name"}/>
                             <StandardTextFields Id_Name={"Company_Name_TXT_Editor"} Label={"Company"}/>
                             <p> Categorie: (change this)</p>
-                            <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Editor_Category"} ref={Category} Secondary={{Id_Name: "DropDown_Editor_SubCategory", path:"/Category/Get/", Route: "SubCategory_Editor", Type:"Normal", refs: SubCategory}}/>
+                            <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Editor_Category"} ref={Category} hrefs={SubCategory} ChildType={"Multi"}/>
                             <p> SubCategorie: (change this)</p>
-                            <div id={"SubCategory_Editor"}>
-                                <DropDown Id_Name={"DropDown_Editor_SubCategory"}/>
-                            </div>
+                            <DropDown Id_Name={"DropDown_Editor_SubCategory"} ref={SubCategory}/>
                             <p> Region: (change this)</p>
-                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Editor_Region"} Secondary={{Id_Name: "DropDown_Editor_SubCategory", path:"/Region_AgeRating/Get/", Route: "AgeRating_Editor", Type:"Normal" ,refs: AgeRating}}/>
+                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Editor_Region"} ref={Region} hrefs={AgeRating} ChildType={"Multi"}/>
                             <p> Age Rating: (change this)</p>
-                            <div id={"AgeRating_Editor"}>
-                                <DropDown Id_Name={"DropDown_Editor_AgeRating"}/>
-                            </div>
-                            <br/>
+                            <DropDown Id_Name={"DropDown_Editor_AgeRating"} inputRef={AgeRating}/>
+                            <CheckBox href={AdultRated}/>
                             <br/>
                             <select Name="AgeRating_Listbox" Size="10" style={{width: 100+"%"}}/>
                         </div>
@@ -46,7 +44,7 @@ export function Product_Editor(){
                             <p>Image:</p>
                             <img width="50%" height="100%" id="Preview_Picture"/>
                             <input type="file" name="fileToUpload" id="Edit_fileToUpload" ref={Picture} onChange={(e) => GetPicture(e)}></input>
-                            <MUIButton Type={"Add"} Refs={[Category,SubCategory,AgeRating, Picture]}>Product</MUIButton>
+                            <MUIButton Type={"Add"} Refs={[Category,SubCategory,AgeRating, Picture, AdultRated]}>Product</MUIButton>
                         </div>
                     </div>
                 </div>

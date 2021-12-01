@@ -9,10 +9,16 @@ import {Button} from "@mui/material";
 import '../CSS/Admin.scss';
 import {Add_Option, Edit_Option, Delete_Option} from '../Event/Admin_Dropdown';
 let Main_Sub = "";
+let Sub_DropDown = "";
+let Region_Age = "";
+let Age_DropDown = "";
 export default class EditingStationAdmin extends React.Component{
     constructor(props) {
         super(props);
         Main_Sub = createRef();
+        Sub_DropDown = createRef();
+        Region_Age = createRef();
+        Age_DropDown = createRef();
     }
     AddCategory = () => {
         Add_Option("Add_Catagory_TXT",null,"/Category/Main/Add/","DropDown_Main_Category");
@@ -42,7 +48,7 @@ export default class EditingStationAdmin extends React.Component{
         Delete_Option("DropDown_Region", null, "/Region_AgeRating/Region/Delete/");
     }
     AddAge = () => {
-        Add_Option("Add_Age_Rating_TXT","DropDown_Region_AgeRating","/AgeRating/Add/","DropDown_AgeRating");
+        Add_Option("Add_Age_Rating_TXT",Region_Age,"/AgeRating/Add/","DropDown_AgeRating");
     }
     EditAge = () => {
         Edit_Option("Edit_Age_TXT", "DropDown_AgeRating","DropDown_Region_AgeRating","/Region_AgeRating/Edit/");
@@ -87,12 +93,10 @@ export default class EditingStationAdmin extends React.Component{
                         <div className="Tab_Sub" id="DropDown_SubCatagory_menu">
                             <h1>Main Category</h1>
                             <div id={"DropDown_SubMain"}>
-                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} ref={Main_Sub} Secondary={{Id_Name: "DropDown_Sub_Category", path:"/Category/Get/", Route: "DropDown_Sub", Type:"Normal"}}/>
+                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} ref={Main_Sub} hrefs={Sub_DropDown} ChildType={"Multi"}/>
                             </div>
                             <h1>Sub Category</h1>
-                        <div id={"DropDown_Sub"}>
-                            <DropDown  Id_Name={"DropDown_Sub_Category"}/>
-                        </div>
+                            <DropDown Id_Name={"DropDown_Sub_Category"} ref={Sub_DropDown}/>
                         </div>
                         <div className="Tab_Sub" id="Add_Sub_Catagory_menu">
                             <h1>Add sub Catagory</h1>
@@ -137,11 +141,9 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_AgeRating">
                         <div className="Tab_Sub" id="DropDown_AgeRating_menu">
                             <h1>Region</h1>
-                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region_AgeRating"} Multi={false} Secondary={{ID_Name: "DropDown_AgeRating", path: "/Region_AgeRating/Get/\"", located: "DropDown_AgeRating", Multi: false}}/>
+                            <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region_AgeRating"} ref={Region_Age} hrefs={Age_DropDown} ChildType={"Multi"}/>
                             <h1>AgeRating</h1>
-                            <div className={"DropDown_Age"}>
-                                <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_AgeRating"} Multi={false} />
-                            </div>
+                            <DropDown Id_Name={"DropDown_AgeRating"} ref={Age_DropDown} />
                         </div>
                     <div className="Tab_Sub" id="Add_Age_Rating_menu">
                         <h1>Add Age Rating Catagory</h1>

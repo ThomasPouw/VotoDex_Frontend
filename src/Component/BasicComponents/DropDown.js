@@ -13,7 +13,6 @@ export class GroupingDropDown extends React.Component {
             options: [],
             Secondary: {
                 Type: "",
-                Route: "",
                 Path: "",
                 ID_Name: ""
             }
@@ -53,22 +52,22 @@ export class DropDown extends React.Component{
         this.state = {
             value: "",
             options: [],
-            Secondary: {
-                Type: "",
-                Route: "",
-                Path: "",
-                ID_Name: ""
-            }
+            hrefs: "",
+            ChildType: "",
+            ChildBaseOption: [],
+
         }
         const getoptions = Option.bind(this);
-        getoptions(this.props.path, this.props.MainID, "MenuItem");
+        getoptions(this.props.path, "MenuItem");
         this.Changes = Change.bind(this);
-        if(this.props.Secondary != undefined){
-            this.state.Secondary = this.props.Secondary;
+        if(this.props.hrefs != undefined){
+            this.state.hrefs = this.props.hrefs;
+        }
+        if(this.props.ChildType != undefined){
+            this.state.ChildType = this.props.ChildType;
         }
     }
     render(){
-        console.log(this.props.Id_Name);
         return(
             <div>
                 <FormControl sx={{ m: 1, minWidth: 80 }}>
@@ -101,7 +100,6 @@ export class MultiDropDown extends React.Component{
             options: [],
             Secondary: {
                 Type: "",
-                Route: "",
                 Path: "",
                 ID_Name: ""
             }
@@ -109,7 +107,6 @@ export class MultiDropDown extends React.Component{
         const change = Change.bind(this)
         const getoptions = Option.bind(this);
         getoptions(this.props.path, this.props.MainID, "MenuItems");
-        this.state.Inline = this.props.Inline
         if(this.props.Secondary != undefined){
             this.state.Secondary = this.props.Secondary;
         }
@@ -145,81 +142,74 @@ const MenuProps = {
     },
 };
 function Change(event){
-    console.log(event.target.value);
     this.setState({value: event.target.value});
-    if(this.state.Secondary.Type !== ""){
-            if(this.state.Secondary.Type =="Normal"){
-                console.log(<DropDown path={this.state.Secondary.path} Id_Name={this.state.Secondary.Id_Name}/>);
-                render(<DropDown path={this.state.Secondary.path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} MenuType={this.state.Secondary.MenuType} ref={this.props.Secondary.refs}/>, document.getElementById(this.state.Secondary.Route));
+    if(this.state.ChildType !== ""){
+        let loopingvalue = this.state.ChildBaseOption;
+        let Childoptions = [];
+        if(loopingvalue !== undefined && loopingvalue !== null){
+            if(loopingvalue[0].subCategory !== undefined && loopingvalue[0].subCategory !== null){
+                for(let i = 0; i < loopingvalue.length; i++){
+                    if(loopingvalue[i].readID == event.target.value){
+                        Childoptions = loopingvalue[i].subCategory;
+                    }
+                }
             }
-            else if(this.state.Secondary.Type ==="Multi"){
-                render(<MultiDropDown path={this.state.Secondary.Path} Id_Name={this.state.Secondary.Id_Name} MainID={event.target.value} ref={this.props.Secondary.refs}/>, document.getElementById(this.state.Secondary.Route));
+            else{
+                for(let i = 0; i < loopingvalue.length; i++){
+                    if(loopingvalue[i].readID == event.target.value){
+                        Childoptions = loopingvalue[i].age;
+                    }
+                }
             }
-
+            if(this.state.ChildType =="Normal"){
+                this.state.hrefs.current.setState({
+                    value: "",
+                    options: optionvalue("option", Childoptions)
+                })
+            }
+            else if(this.state.ChildType ==="Multi"){
+                this.state.hrefs.current.setState({
+                    value: "",
+                    options: optionvalue("MenuItems", Childoptions)
+                })
+            }
+        }
     }
-
 }
-function Option(path, MainID, MenuOrOption){
-    const options = [];
+function Option(path, MenuOrOption){
     if(path !== undefined){
-        if(MainID === undefined){
-            axios.get("http://localhost:8081/api/v1/Options"+path).then(function(result){
-                    for(let i = 0; i < result.data.length; i++){
-                        console.log("Hello!");
-                        console.log(result.data);
-                        console.log(result.data[i].readID)
-                        if(MenuOrOption ==="option"){
-                            if(result.data[i].categoryName != undefined){
-                                options.push(<option value={result.data[i].readID}>{result.data[i].categoryName}</option>);
-                            }
-                            else{
-                                options.push(<option value={result.data[i].readID}>{result.data[i].regionAgeName}</option>);
-                            }
+        axios.get("http://localhost:8081/api/v1/Options"+path).then(function(result){
+            this.setState({
+                ...this.state,
+                options: optionvalue(MenuOrOption, result.data),
+                ChildBaseOption: result.data})
+        }.bind(this)
+        );
+    }
+}
+function optionvalue(MenuOrOption, result){
+    const options = [<option value={null}>{"Choose your option"}</option>];
+    if(result !== undefined){
+        for(let i = 0; i < result.length; i++){
+            if(MenuOrOption ==="option"){
+                if(result[i].categoryName !== undefined){
+                    options.push(<option value={result[i].readID}>{result[i].categoryName}</option>);
+                }
+                else {
+                    options.push(<option value={result[i].readID}>{result[i].regionAgeName}</option>);
+                }
 
-                        }
-                        else{
-                            if(result.data[i].categoryName != undefined){
-                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].categoryName}</MenuItem>);
-                            }
-                            else{
-                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].regionAgeName}</MenuItem>);
-                            }
-                        }
-                    }
-                    this.setState({
-                        ...this.state,
-                        options: options
-                    })
-                }.bind(this)
-            );
-        }
-        else{
-            axios.get("http://localhost:8080/api/v1/Options"+path+MainID).then(function(result) {
-                    for(let i = 0; i < result.data.length; i++){
-                        if(MenuOrOption ==="option"){
-                            if(result.data[i].categoryName != undefined){
-                                options.push(<option value={result.data[i].readID}>{result.data[i].categoryName}</option>);
-                            }
-                            else{
-                                options.push(<option value={result.data[i].readID}>{result.data[i].regionAgeName}</option>);
-                            }
-
-                        }
-                        else{
-                            if(result.data[i].categoryName != undefined){
-                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].categoryName}</MenuItem>);
-                            }
-                            else{
-                                options.push(<MenuItem value={result.data[i].readID}>{result.data[i].regionAgeName}</MenuItem>);
-                            }
-                        }
-                    }
-                    this.setState({
-                        ...this.state,
-                        options: options
-                    })
-                }.bind(this)
-            );
+            }
+            else{
+                if(result[i].categoryName !== undefined){
+                    options.push(<MenuItem value={result[i].readID}>{result[i].categoryName}</MenuItem>);
+                }
+                else{
+                    options.push(<MenuItem value={result[i].readID}>{result[i].regionAgeName}</MenuItem>);
+                }
+            }
         }
     }
+
+    return options;
 }
