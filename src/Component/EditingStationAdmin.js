@@ -92,9 +92,7 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_SubCategory">
                         <div className="Tab_Sub" id="DropDown_SubCatagory_menu">
                             <h1>Main Category</h1>
-                            <div id={"DropDown_SubMain"}>
-                                <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} ref={Main_Sub} hrefs={Sub_DropDown} ChildType={"Multi"}/>
-                            </div>
+                            <DropDown path={"/Category/Get/"} Id_Name={"DropDown_Sub_Main_Category"} ref={Main_Sub} hrefs={Sub_DropDown} ChildType={"Multi"}/>
                             <h1>Sub Category</h1>
                             <DropDown Id_Name={"DropDown_Sub_Category"} ref={Sub_DropDown}/>
                         </div>
@@ -118,7 +116,6 @@ export default class EditingStationAdmin extends React.Component{
                     <div className="Tab_Menu" id="Tab_Region">
                         <div className="Tab_Sub" id="DropDown_Region_menu">
                             <h1>Region</h1>
-
                             <DropDown path={"/Region_AgeRating/Get/"} Id_Name={"DropDown_Region"} Multi={false} />
                         </div>
                         <div className="Tab_Sub" id="Add_Region_menu">

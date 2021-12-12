@@ -74,8 +74,6 @@ export class DropDown extends React.Component{
                     <InputLabel id="demo-simple-select-autowidth-label">{this.props.label}</InputLabel>
 
                     <Select
-                        ref={this.DropdownInput}
-                        inputRef={this.DropdownSelect}
                         id={this.props.Id_Name}
                         onChange={(E) => this.Changes(E)}
                         autoWidth
@@ -168,6 +166,7 @@ function Change(event){
                 })
             }
             else if(this.state.ChildType ==="Multi"){
+                console.log(this.state);
                 this.state.hrefs.current.setState({
                     value: "",
                     options: optionvalue("MenuItems", Childoptions)

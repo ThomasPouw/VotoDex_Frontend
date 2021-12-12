@@ -6,6 +6,9 @@ import reportWebVitals from '../reportWebVitals';
 import 'react-tabs/style/react-tabs.css';
 import '../CSS/Admin.scss';
 import EditingStationAdmin from "../Component/EditingStationAdmin"
+import {CheckBox} from "../Component/BasicComponents/CheckBox";
+import {Button, Dropdown} from "@mui/material";
+
 
 
 export function Admin_Page(){
@@ -14,7 +17,6 @@ export function Admin_Page(){
             <React.StrictMode>
                 <div className="Main_Container" id="menu">
                     <div className="menu2" key="Main2" style={{ margin: 2 + "%", width: 95 + "%", height: 27 + "%" }}>
-                        Datagrid. (Find one)
                     </div>
                     <EditingStationAdmin/>
                     <div className="menu2" style={{ margin: 2 + "%", width: 95 + "%", height: 27 + "%" }}>

@@ -9,8 +9,8 @@ export class CheckBox extends Component{
         }
     }
 
-    onChange(ev) {
-        this.setState({checked: ev.target.checked});
+    onChange(event) {
+        this.setState({checked: event.target.checked});
     }
     render() {
         return (
@@ -20,7 +20,7 @@ export class CheckBox extends Component{
                 ref={this.props.href}
                 label="Adult Rated"
                 checked={this.state.checked}
-                onChange={this.onChange.bind(this)}
+                onChange={(E) => this.onChange(E)}
             />}
             label="Adult Rated"
             labelPlacement="end"

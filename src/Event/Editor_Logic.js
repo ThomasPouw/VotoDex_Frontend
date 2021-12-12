@@ -2,8 +2,7 @@ import React from "react";
 import axios from "axios";
 
 export function Editor_Send(DropDownReferences){
-    let Adult = DropDownReferences[4].current.state;
-    console.log(Adult);
+
     let Product_Name = document.getElementById("Product_Name_TXT_Editor").value;
     let Company_Name = document.getElementById("Company_Name_TXT_Editor").value;
     let Description_LongText = document.getElementById("Description_LongText").value;
@@ -20,6 +19,8 @@ export function Editor_Send(DropDownReferences){
     let AgeRating_Value_Array = DropDownReferences[2].current.state.value;
     console.log("AgeRating_Value_Array "+ AgeRating_Value_Array);
     let Picture = DropDownReferences[3].current.files[0];
+    let Adult = DropDownReferences[4].current.state.checked;
+    console.log("Adult: "+ Adult);
 
 
     console.log(Picture);
@@ -34,7 +35,28 @@ export function Editor_Send(DropDownReferences){
         fd.append('AgeRating', AgeRating_Value_Array);
         fd.append('image', Picture, Picture.name);
         console.log(fd)
-        axios.get("http://localhost:2001/api/v1/Product/Add"+Product_Name+"/"+Company_Name+"/"+Description_LongText+"/"+Category_Value+"/"+SubCategory_Value_Array+"/"+AgeRating_Value_Array+"/"+Adult)
+        axios.get("http://localhost:2001/api/v1/Product/"+Product_Name+"/"+Company_Name+"/"+Description_LongText+"/"+Category_Value+"/"+SubCategory_Value_Array+"/"+AgeRating_Value_Array+"/"+Adult).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response);
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+        });
+
+
         //axios.post("http://localhost:2001/api/v1/Product/Add", {
         //    fd}).then(
         //        result => {

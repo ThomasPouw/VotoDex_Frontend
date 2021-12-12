@@ -1,0 +1,27 @@
+.Product_Page{
+  position: absolute;
+  width: 90%;
+  height: fit-content;
+  background-color: #851C57;
+  margin: 5%;
+  border-radius: 5%;
+  overflow: hidden;
+}
+.Product_Information{
+  height: 50%;
+  width: 37.5%;
+  background-color: #715496;
+  padding: 5%;
+  overflow: hidden;
+}
+.Description{
+  width: 100%;
+  height: auto;
+  background-color: #acaca9;
+  border-style: double;
+  border-color: #bdbcbc;
+}
+p.name{
+  text-align: center;
+  font-size: 100%;
+}

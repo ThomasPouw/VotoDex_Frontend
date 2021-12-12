@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {FooterMenu, HeaderMenu} from './Component/Header_Footer';
+import {FooterMenu} from './Component/Header_Footer';
+import {HeaderMenu} from "./Component/Header";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import "cors";
